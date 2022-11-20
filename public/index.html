@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/demo.css">
-    </head>
-    <body>
-        <p>This is the home page</p>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
-        <p><a href = "chat.html">Chat</a></p>
-        
-        <script src="js/client.js" async defer></script>
-     
+    <title>mChat ~ Home</title>
+</head>
 
-    </body>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div>
+            <a href="index.html" class="nav-link" id="nav-logo">Home</a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Chat Section -->
+    <section>
+        <div class="container">
+            <img src="resources/coding.png">
+            <br>
+            <p class="desription-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique aliquam ratione porro corrupti debitis beatae! Vitae itaque eaque sunt.</p>
+            <p class="desription-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt similique aliquam ratione porro corrupti debitis beatae! Vitae itaque eaque sunt.</p>
+            <button class="chat-button"><a href="chat.html">Chat Now</a></button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <h3>Resources Used On This Page:</h3>
+        <p><a href="https://www.flaticon.com/free-icons/web-development" title="web development icons">Web development icons created by surang - Flaticon</a></p>
+        <br><br>
+        <p><a href="https://github.com/MillerDawson">Miller's Github</a></p>
+        &copy; Miller Dawson 2022
+    </footer>
+    <script src="../index.js" async defer></script>
+</body>
 </html>
