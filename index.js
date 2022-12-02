@@ -37,4 +37,12 @@ io.on("connection", function (socket) {
       io.emit("chat message", data);
   });
 
+/* Server listens for isTyping and emits typingStatus event back to the website */
+  socket.on('isTyping', (data)=>{
+      if(data.typing==true)
+         io.emit('typingStatus', data)
+      else
+         io.emit('typingStatus', data)
+    })
+
 });

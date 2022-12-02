@@ -4,6 +4,9 @@ const socket = io();
 
 const inboxPeople = document.querySelector(".inbox__people");
 
+var typing=false;
+var timeout=undefined;
+var user;
 
 let userName = "";
 let id;
@@ -28,7 +31,6 @@ const addToUsersBox = function (userName) {
     //to true, while also casting from an object to boolean
     if (!!document.querySelector(`.${userName}-userlist`)) {
         return;
-    
     }
     
     //setup the divs for displaying the connected users
@@ -50,40 +52,49 @@ socket.on("new user", function (data) {
   data.map(function (user) {
           return addToUsersBox(user);
       });
+
+// mChat Connect Message
+  messageBox.innerHTML += serverConnectMsg;
 });
 
 //when a user leaves
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
-});
 
+// mChat Disconnect Message
+  messageBox.innerHTML += serverDisconnectMsg;
+});
 
 const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
 
-const addNewMessage = ({ user, message }) => {
-  const time = new Date();
-  const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
+const time = new Date();
+const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
 
+const addNewMessage = ({ user, message }) => {
+
+  // Message recieved by user
   const receivedMsg = `
   <div class="incoming__message">
     <div class="received__message">
-      <p>${message}</p>
-      <div class="message__info">
-        <span class="message__author">${user}</span>
-        <span class="time_date">${formattedTime}</span>
-      </div>
+    <div class="message__info">
+    <p class="time_date">${formattedTime}</p>
+        <span class="message__author">${user}</span><br>
+        <span class="description-text">${message}</span>
+    </div>
     </div>
   </div>`;
 
+  // Message sent by user
   const myMsg = `
   <div class="outgoing__message">
     <div class="sent__message">
-      <p>${message}</p>
-      <div class="message__info">
-        <span class="time_date">${formattedTime}</span>
-      </div>
+    <div class="message__info">
+    <p class="time_date">${formattedTime}</p>
+        <span class="message__user">${userName}</span><br>
+        <span class="description-text">${message}</span>
+    </div>
     </div>
   </div>`;
 
@@ -108,3 +119,55 @@ messageForm.addEventListener("submit", (e) => {
 socket.on("chat message", function (data) {
   addNewMessage({ user: data.nick, message: data.message });
 });
+
+
+/* chat connect/disconnect messages */
+const serverConnectMsg = `
+<div class="outgoing__message">
+    <div class="sent__message">
+    <div class="message__info">
+    <p class="time_date">${formattedTime}</p>
+        <span class="message__author">mChat</span><br>
+        <span class="description-text">${userName} has joined the chat</span>
+    </div>
+    </div>
+  </div>`;
+
+
+const serverDisconnectMsg = `
+<div class="outgoing__message">
+    <div class="sent__message">
+    <div class="message__info">
+    <p class="time_date">${formattedTime}</p>
+        <span class="message__author">mChat</span><br>
+        <span class="description-text">${userName} has left the chat</span>
+    </div>
+    </div>
+  </div>`;
+
+/* 
+Typing ~ 
+https://rsrohansingh10.medium.com/add-typing-in-your-chat-application-using-socket-io-421c12d8859e
+*/
+
+inputField.addEventListener('keypress', () =>{
+  socket.emit('isTyping', data)
+})
+
+socket.on('keypress', (data) => {
+    typingStatus = true
+    socket.emit('isTyping', {
+        user: user,
+        typingStatus: true
+    })
+    clearTimeout(timeout)
+    timeout = setTimeout(typingTimeout, 3000)
+})
+
+socket.on('isTyping', (data) => {
+	if (data.isTyping == True)
+		status.innerHTML += ("<p>${userName} is typing</p>")
+	else
+		/* leaves .typingStatus empty if the user is not typing */
+		status.innerHTML += ("")
+})

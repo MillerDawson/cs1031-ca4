@@ -1,2 +1,4 @@
-# cs1031-ca4
-A chat website using JS CSS and HTML. The repository contains all of my October/December assessment files and previous versions, including resources.
+## Introduction
+The repository contains some example code to get you started. 
+
+You may use this README for your coding report as per Task 5.

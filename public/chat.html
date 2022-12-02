@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socket.io simple chat</title>
-    <link rel="stylesheet" href="/css/demo.css" />
-  </head>
-  <body>
-    <div class="sidenav">
-        <div class="inbox__people">
-            <h4>Active users</h4>
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> mChat ~ Chat Room</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 
-      </div>
-      
-      
-      <br>
-      <hr>
-      <div class="content">
-        <div class="messages__history"></div>
-          <div class="fallback"></div>
-        <div class="inbox__messages">
-            
-          
-        </div>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div>
+                <a href="index.html" class="nav-link" id="nav-logo">Home</a>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <hr>
+        <!-- Chat Box -->
+        <section class="alt-section">
+            <div class="content">
+                <div class="messages__history"></div>
+                <div class="fallback"></div>
+                <div class="inbox__messages">
+                </div>
+                <!-- Chatbox input and submit form -->
+                <div class="paragraph-text">
+                    <form class="message_form">
+                        <div class="typingStatus"></div>
+                        <input type="text" class="message_form__input" placeholder="Type a message" id="form_input">
+                        <button class="message_form__button chat-button" type="submit">
+                        Enter
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Active Users -->
+        <section>
+            <!-- Try giving a typing notification along with it above the chatbox section -->
+            <div class="inbox__people">
+                <h4 style="color: white;">Active users</h4>
+            </div>
+        </section>
 
-        <form class="message_form">
-            <input type="text" class="message_form__input" placeholder="Type a message" />
-            <button class="message_form__button" type="submit">
-              Enter
-            </button>
-          </form>
-      </div>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/client.js"></script>
-  </body>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/client.js"></script>
+    </body>
 </html>

@@ -130,4 +130,66 @@ section.alt-section{
     padding: 20px;
 }
 
+
+/* Chat.html */
+.inbox__people, .content{
+    text-align: center;
+    justify-content: center;
+}
+
+.inbox__people{
+    color: orange;
+    display: inline;
+}
+
+.message_form__input{
+    padding: 5px;
+    border-radius: 12px;
+    background-color: #FD7013;
+    color: white;
+    border: none;
+}
+
+.message_form__button{
+    color: white;
+}
+
+::placeholder{
+    color: white;
+}
+
+.outgoing__message{
+    background-color: #FD7013;
+}
+
+.outgoing__message, .incoming__message{
+    color: white;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.incoming__message{
+    background-color: #222831;
+}
+
+.message__info{
+    text-align: left;
+}
+
+.time_date{
+    float: right;
+    display: inline;
+}
+
+/* Message Name Colours*/
+.message__author{
+    color: red;
+}
+
+.message__user{
+    color: blue;
+}
+
+
 /* Add @media for mobile and tablet */
